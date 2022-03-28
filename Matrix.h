@@ -35,9 +35,10 @@ using namespace std;
 #include <tuple>
 
 struct MIL {
-	vector<tuple<int, int> > indices;
+	vector<vector<int> > indices;
 	vector<float> values;
-	MIL(vector<tuple<int, int> > i, vector<float> v) {
+	MIL() {}
+	MIL(vector<vector<int> > i, vector<float> v) {
 		indices = i;
 		values = v;
 	}
@@ -49,11 +50,12 @@ class Matrix {
 public:
 	// INITIALIZERS
 	Matrix();
-	Matrix(const MIL& inMIL);
+	Matrix(const MIL& inMIL); // NOT OBSOLETE
 	Matrix(const Matrix& inMatrix);
 
 	// OPERATIONS
-	Matrix operator=(Matrix& m2);
+	void operator=(Matrix& mx);
+	void operator=(Matrix&& mx);
 	Matrix operator*(float& k);
 	Matrix operator*(Matrix& m2);
 
